@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/services.dart';
+import 'package:lims/screen/faq.dart';
+import 'package:lims/screen/list-pustakawan.dart';
+import 'package:lims/screen/login-anggota.dart';
+import 'package:lims/screen/news.dart';
 import 'package:lims/screen/profile-perpustakaan.dart';
+
+import 'login-pustakawan.dart';
 
 enum _MenuValues { profil, pustakawan, faq }
 
@@ -73,10 +79,10 @@ class _SplashState extends State<Splash> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePerpustakaan()));
                     break;
                   case _MenuValues.pustakawan:
-                    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AddMeasurement()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Pustakawan()));
                     break;
                   case _MenuValues.faq:
-                    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AddMeasurement()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Faq()));
                     break;
                 }
               },
@@ -159,16 +165,21 @@ class _SplashState extends State<Splash> {
                   (index) {
                     return Column(
                       children: [
-                        Container(
-                          width: 90,
-                          height: 90,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                          clipBehavior: Clip.antiAlias,
-                          child: Image.asset(
-                            carouselItems[index],
-                            fit: BoxFit.cover,
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LatestNews()));
+                          },
+                          child: Container(
+                            width: 90,
+                            height: 90,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7),
+                            ),
+                            clipBehavior: Clip.antiAlias,
+                            child: Image.asset(
+                              carouselItems[index],
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         Container(
@@ -207,7 +218,7 @@ class _SplashState extends State<Splash> {
                 children: [
                   Container(
                     width: 100,
-                    height: 140,
+                    height: 151,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
@@ -219,7 +230,7 @@ class _SplashState extends State<Splash> {
                       children: [
                         badges.Badge(
                           badgeStyle: badges.BadgeStyle(
-                            badgeColor: Theme.of(context).canvasColor.withOpacity(.0),
+                            badgeColor: Theme.of(context).focusColor.withOpacity(.0),
                           ),
                           position: badges.BadgePosition.topEnd(top: 0, end: -50),
                           badgeContent: Icon(
@@ -268,7 +279,7 @@ class _SplashState extends State<Splash> {
                   ),
                   Container(
                     width: 100,
-                    height: 150,
+                    height: 161,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
@@ -280,7 +291,7 @@ class _SplashState extends State<Splash> {
                       children: [
                         badges.Badge(
                           badgeStyle: badges.BadgeStyle(
-                            badgeColor: Theme.of(context).canvasColor.withOpacity(.0),
+                            badgeColor: Theme.of(context).focusColor.withOpacity(.0),
                           ),
                           position: badges.BadgePosition.topEnd(top: 0, end: -50),
                           badgeContent: Icon(
@@ -329,7 +340,7 @@ class _SplashState extends State<Splash> {
                   ),
                   Container(
                     width: 100,
-                    height: 130,
+                    height: 141,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
@@ -341,7 +352,7 @@ class _SplashState extends State<Splash> {
                       children: [
                         badges.Badge(
                           badgeStyle: badges.BadgeStyle(
-                            badgeColor: Theme.of(context).canvasColor.withOpacity(.0),
+                            badgeColor: Theme.of(context).focusColor.withOpacity(.0),
                           ),
                           position: badges.BadgePosition.topEnd(top: 0, end: -50),
                           badgeContent: Icon(
@@ -459,11 +470,13 @@ class _SplashState extends State<Splash> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPustakawan()));
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(side: BorderSide(color: Colors.black), borderRadius: BorderRadius.circular(24)),
-                    padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 80),
+                    padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 75),
                   ),
                   child: const Text(
                     'Masuk sebagai Pustakawan',
@@ -474,8 +487,11 @@ class _SplashState extends State<Splash> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginAnggota()));
+                  },
                   style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).primaryColor,
                       padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 89),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(24)),
